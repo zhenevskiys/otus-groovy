@@ -30,5 +30,30 @@ jobs:
       - name: Make gradlew executable (Linux/macOS)
         run: chmod +x ./gradlew
 
-      - name: Build fat JAR (shadowJar)
-        run: ./gradlew --no-daemon clean shadowJar
+      # Явно запускаем тесты; build включает test, но так удобнее собирать отчёты
+      - name: Run unit tests
+        run: ./gradlew --no-daemon clean test
+
+      - name: Upload test reports (JUnit XML, HTML)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports-jdk-${{ matrix.java }}
+          path: |
+            **/build/test-results/test/**/*.xml
+            **/build/reports/tests/test/**
+          if-no-files-found: warn
+
+      # Сборка и «толстый» JAR. build прогонит проверку и сборку артефактов,
+      # а shadowJar соберёт fat-jar (если подключён shadow plugin).
+      - name: Build and assemble Shadow JAR
+        run: ./gradlew --no-daemon build shadowJar
+
+      - name: Upload Shadow JAR artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: shadow-jars-jdk-11
+          path: |
+            **/build/libs/*-all.jar
+            **/build/libs/*-shadow.jar
+          if-no-files-found: warn
