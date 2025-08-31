@@ -1,0 +1,5 @@
+rootProject.name = 'otus-groovy'
+
+include 'hw01-gradle'
+project(':hw01-gradle').projectDir = file('/hw01-gradle')
+project(':hw01-gradle').buildFileName = 'build.gradle'
