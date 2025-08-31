@@ -1,0 +1,55 @@
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+build/
+classes/
+generated/
+
+
+### Logs ###
+*.log
+*.log.*
+
+### Groovy / Gradle ###
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+### OS-specific ###
+.DS_Store
+Thumbs.db
+
+### Other ###
+*.class
+*.jar
+*.war
+*.ear
+
+### Compiled ###
+*.class
+*.jar
+*.war
+*.ear
+
+### Temporary files ###
+*.swp
+*.swo
+*~
+
+### Test Reports (JUnit / Spock) ###
+# Gradle test reports
+build/test-results/
+build/reports/tests/
+build/reports/jacoco/
+
+# Maven test reports
+target/surefire-reports/
+target/failsafe-reports/
+target/site/
+
+# Coverage tools
+.jacoco/
+coverage/
