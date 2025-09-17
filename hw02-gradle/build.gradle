@@ -1,0 +1,30 @@
+plugins {
+    id 'groovy'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.apache.groovy:groovy:4.0.14'
+    implementation 'com.google.guava:guava:33.4.8-jre'
+    testImplementation 'org.spockframework:spock-core:2.3-groovy-4.0' //потому что у нас groovy 4.0.14
+}
+
+application {
+    mainClass = 'com.example.AtmOtus'
+}
+
+shadowJar {
+    archiveClassifier.set('')
+}
+
+test {
+    useJUnitPlatform()
+}

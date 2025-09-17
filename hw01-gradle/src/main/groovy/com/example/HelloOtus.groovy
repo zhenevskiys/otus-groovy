@@ -1,3 +1,5 @@
+package com.example
+
 import com.google.common.base.CaseFormat
 
 static void main(String[] args) {
